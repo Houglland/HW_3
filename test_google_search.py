@@ -14,6 +14,7 @@ def browser_setup():
 
 def test_google_search():
     browser.open_url('https://google.com')
+
     if browser.element(by.text('Принять все')).matching(be.visible):
         browser.element(by.text('Принять все')).click()
 
@@ -22,3 +23,17 @@ def test_google_search():
 
     search_results = browser.element('[id="search"]')
     search_results.should(have.text('User-oriented Web UI browser tests in Python'))
+
+def test_google_search_no_results():
+    browser.open_url('https://google.com')
+
+    if browser.element(by.text('Принять все')).matching(be.visible):
+        browser.element(by.text('Принять все')).click()
+
+    search_box = browser.element('[name="q"]')
+    search_box.should(be.blank).type('zxyqlvnwrp23847hfglxq').press_enter()
+
+    search_results = browser.element('[id="search"]')
+    search_results.should(have.text('did not match'))
+
+
