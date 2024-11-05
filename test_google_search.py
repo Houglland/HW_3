@@ -13,7 +13,7 @@ def browser_setup():
 
 
 def test_google_search():
-    browser.open_url('https://google.com/ncr')
+    browser.open('https://google.com/ncr')
 
     if browser.element(by.text('Принять все')).matching(be.visible):
         browser.element(by.text('Принять все')).click()
@@ -26,13 +26,13 @@ def test_google_search():
 
 
 def test_google_search_no_results():
-    browser.open_url('https://google.com/ncr')
+    browser.open('https://google.com/ncr')
 
     if browser.element(by.text('Принять все')).matching(be.visible):
         browser.element(by.text('Принять все')).click()
 
     search_box = browser.element('[name="q"]')
-    search_box.should(be.blank).type('zxyqlvnwrp23847hfglxq').press_enter()
+    search_box.should(be.blank).type('zxyqlv.ж;nwr;p23847hfglлаывав.ыавыацуцацxq').press_enter()
 
     search_results = browser.element('[id="search"]')
     search_results.should(have.text('did not match'))
