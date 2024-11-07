@@ -1,13 +1,11 @@
 import pytest
 from selene import browser, be, have, by
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-
 
 @pytest.fixture(scope='function', autouse=True)
 def browser_setup():
     browser.config.window_width = 1920
     browser.config.window_height = 1080
+
     yield
     browser.quit()
 
